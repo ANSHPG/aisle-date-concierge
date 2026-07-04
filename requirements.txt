@@ -1,0 +1,114 @@
+# =========================
+# Core LangChain
+# =========================
+langchain
+langchain-core
+langchain-community
+langchain-text-splitters
+
+# =========================
+# LLM Providers
+# =========================
+langchain-openai
+openai
+
+langchain-google-genai
+google-generativeai
+
+langchain-groq
+groq
+
+langchain-mistralai
+mistralai
+
+langchain-huggingface
+huggingface_hub
+transformers
+sentence-transformers
+
+# =========================
+# Embeddings
+# =========================
+tiktoken
+
+# =========================
+# Vector Databases
+# =========================
+chromadb
+faiss-cpu
+
+# Optional alternative vector stores
+qdrant-client
+weaviate-client
+pinecone
+
+# =========================
+# Document Loaders / Parsing
+# =========================
+pypdf
+pymupdf
+python-docx
+docx2txt
+beautifulsoup4
+lxml
+markdown
+html2text
+PyGithub
+langchain_docling
+# OCR (optional)
+pytesseract
+pillow
+
+# =========================
+# RAG Utilities
+# =========================
+rank-bm25
+numpy
+pandas
+
+# =========================
+# API / Backend
+# =========================
+fastapi
+uvicorn
+python-multipart
+
+# =========================
+# UI (if Streamlit)
+# =========================
+streamlit
+
+# =========================
+# Environment Variables
+# =========================
+python-dotenv
+
+# =========================
+# Tokenization / Utils
+# =========================
+tenacity
+aiohttp
+requests
+
+# =========================
+# Logging / Monitoring
+# =========================
+langsmith
+
+# =========================
+# Optional Advanced Retrieval
+# =========================
+duckduckgo-search
+wikipedia
+arxiv
+
+# =========================
+# Database (optional chat history)
+# =========================
+sqlalchemy
+sqlite-utils
+
+#===========
+#Tools
+#===========
+langchain-tavily
