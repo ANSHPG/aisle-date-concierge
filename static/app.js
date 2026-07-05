@@ -34,6 +34,13 @@ const actionCardsContainer = document.getElementById('action-cards-container');
 const chatInput = document.getElementById('chat-input');
 const btnSendMsg = document.getElementById('btn-send-msg');
 
+// Mobile specific elements
+const sidebarDossier = document.getElementById('sidebar-dossier');
+const btnToggleSidebar = document.getElementById('btn-toggle-sidebar');
+const btnCloseSidebar = document.getElementById('btn-close-sidebar');
+const sidebarBackdrop = document.getElementById('sidebar-backdrop');
+const mobileCityTag = document.getElementById('mobile-city-tag');
+
 // ----------------------------------------------------------------------------
 // INITIALIZATION
 // ----------------------------------------------------------------------------
@@ -76,7 +83,30 @@ function setupEventListeners() {
             }
         }
     });
+
+    // Mobile Drawer Controls
+    if (btnToggleSidebar) {
+        btnToggleSidebar.addEventListener('click', openSidebarDrawer);
+    }
+    if (btnCloseSidebar) {
+        btnCloseSidebar.addEventListener('click', closeSidebarDrawer);
+    }
+    if (sidebarBackdrop) {
+        sidebarBackdrop.addEventListener('click', closeSidebarDrawer);
+    }
 }
+
+function openSidebarDrawer() {
+    if (sidebarDossier) sidebarDossier.classList.add('drawer-open');
+    if (sidebarBackdrop) sidebarBackdrop.classList.add('active');
+}
+
+function closeSidebarDrawer() {
+    if (sidebarDossier) sidebarDossier.classList.remove('drawer-open');
+    if (sidebarBackdrop) sidebarBackdrop.classList.remove('active');
+}
+
+
 
 // ----------------------------------------------------------------------------
 // API CALLS
@@ -141,10 +171,12 @@ function submitMessage() {
     if (!text || isThinking || appState.status === 'awaiting_tool_approval') return;
     
     chatInput.value = '';
+    closeSidebarDrawer();
     sendUserPayload(text);
 }
 
 function resetSession() {
+    closeSidebarDrawer();
     sendChatAction('reset');
 }
 
@@ -248,7 +280,11 @@ function updateUI() {
     }
 
     // 2. Update Dossier Metrics
-    dossierCity.innerText = appState.dossier.city || '—';
+    const cityText = appState.dossier.city || '—';
+    dossierCity.innerText = cityText;
+    if (mobileCityTag) {
+        mobileCityTag.innerText = cityText;
+    }
     
     if (appState.dossier.weather) {
         dossierWeatherSection.style.display = 'block';

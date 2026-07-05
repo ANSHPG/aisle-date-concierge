@@ -11,11 +11,20 @@
 </head>
 <body>
     <div class="app-container">
+        <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
         <!-- Sidebar - The Dossier -->
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <div class="dossier-eyebrow">Case file · 001</div>
-                <h2 class="dossier-title">The Dossier</h2>
+        <aside class="sidebar" id="sidebar-dossier">
+            <div class="sidebar-header-row">
+                <div class="sidebar-header">
+                    <div class="dossier-eyebrow">Case file · 001</div>
+                    <h2 class="dossier-title">The Dossier</h2>
+                </div>
+                <button class="btn-close" id="btn-close-sidebar" aria-label="Close dossier">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.5" fill="none">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
             </div>
             
             <div class="dossier-section">
@@ -67,6 +76,18 @@
 
         <!-- Main Workspace -->
         <main class="main-content">
+            <!-- Mobile Header Bar -->
+            <header class="mobile-header-bar" id="mobile-header-bar">
+                <button class="btn-menu" id="btn-toggle-sidebar" aria-label="Open dossier">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.5" fill="none">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <div class="mobile-header-title">Aisle · Date Concierge</div>
+                <div class="mobile-city-tag" id="mobile-city-tag">—</div>
+            </header>
             <!-- Hero / Welcome Panel -->
             <div class="hero-container" id="hero-panel">
                 <div class="hero-eyebrow">AI Date Concierge</div>

@@ -981,46 +981,218 @@ body, html {
   background: var(--ink-faint);
 }
 
-/* Responsive adjustments */
+/* ----------------------------------------------------------------------------
+   MOBILE & DRAWER SPECIFIC DESKTOP STYLES
+   ---------------------------------------------------------------------------- */
+.sidebar-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-close {
+  display: none; /* Hidden on desktop */
+  background: transparent;
+  border: none;
+  color: var(--ink-dim);
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.btn-close:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--rose-soft);
+}
+
+.mobile-header-bar {
+  display: none; /* Hidden on desktop */
+}
+
+.sidebar-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(8, 8, 12, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 98;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-normal);
+}
+
+.sidebar-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ----------------------------------------------------------------------------
+   RESPONSIVE ADJUSTMENTS (width <= 900px)
+   ---------------------------------------------------------------------------- */
 @media (max-width: 900px) {
   .app-container {
     flex-direction: column;
   }
-  
-  .sidebar {
-    width: 100%;
-    height: auto;
-    max-height: 240px;
-    padding: 1.2rem;
-    border-right: none;
+
+  /* Mobile Header Top Bar */
+  .mobile-header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    background: var(--bg-raise);
     border-bottom: 1px solid var(--line);
+    padding: 0 1.2rem;
+    flex-shrink: 0;
+    z-index: 10;
   }
-  
-  .sidebar-header {
-    margin-bottom: 0.8rem;
+
+  .btn-menu {
+    background: transparent;
+    border: none;
+    color: var(--rose-soft);
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
   }
-  
+
+  .btn-menu:hover {
+    background: rgba(230, 74, 114, 0.06);
+  }
+
+  .mobile-header-title {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .mobile-city-tag {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    color: var(--rose-soft);
+    background: var(--rose-glow);
+    border: 1px solid rgba(230, 74, 114, 0.2);
+    border-radius: 99px;
+    padding: 0.25rem 0.65rem;
+    max-width: 110px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* Sidebar Drawer on Mobile */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 290px;
+    z-index: 99;
+    transform: translateX(-100%);
+    transition: transform var(--transition-normal);
+    box-shadow: 15px 0 35px rgba(0, 0, 0, 0.55);
+    border-right: 1px solid var(--line);
+  }
+
+  .sidebar.drawer-open {
+    transform: translateX(0);
+  }
+
+  .btn-close {
+    display: flex; /* Visible in drawer mode */
+  }
+
   .dossier-section.flex-grow {
-    display: none; /* Hide tool activity log on small screens */
+    max-height: 40vh; /* Limits scroll height on mobile */
   }
-  
-  .dossier-rule {
-    margin: 0.8rem 0;
+
+  /* Main Workspace adjustments */
+  .main-content {
+    height: calc(100vh - 60px);
   }
-  
+
+  .hero-container {
+    padding: 1.2rem;
+    max-width: 100%;
+  }
+
   .hero-title {
     font-size: 2.2rem;
+    margin-bottom: 0.8rem;
   }
-  
+
+  .hero-sub {
+    font-size: 0.9rem;
+    margin-bottom: 1.4rem;
+  }
+
   .quick-prompts-grid {
     grid-template-columns: 1fr;
+    gap: 0.5rem;
   }
-  
+
+  .qp-chip {
+    padding: 0.55rem 1rem;
+    font-size: 0.78rem;
+  }
+
   .chat-viewport {
-    padding: 1.2rem;
+    padding: 1.1rem 1.1rem 0 1.1rem;
   }
-  
+
+  .chat-history {
+    gap: 1.2rem;
+  }
+
+  .msg-bubble-wrap {
+    max-width: 90%; /* Wider bubbles on small screens */
+  }
+
+  .bubble {
+    padding: 0.85rem 1.1rem;
+    font-size: 0.9rem;
+  }
+
+  .rec-grid {
+    grid-template-columns: 1fr; /* Single column restaurant cards on mobile */
+  }
+
+  .plan-card {
+    padding: 1rem 1.1rem;
+  }
+
+  .timeline-list {
+    margin-left: 0.2rem;
+  }
+
   .input-panel {
     padding: 0.8rem;
+  }
+
+  .input-container {
+    padding: 0.3rem 0.4rem 0.3rem 0.95rem;
+  }
+
+  .input-container input {
+    font-size: 0.88rem;
+  }
+
+  .btn-send {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
   }
 }
