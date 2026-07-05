@@ -622,15 +622,18 @@ def api_geoip():
     city = get_ip_city()
     return {"city": city}
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
+# Only mount static files and register root index if running locally with static directory present.
+# On Vercel, static files and routing are handled on the edge via vercel.json.
+if os.path.exists("static"):
+    app.mount("/static", StaticFiles(directory="static"), name="static")
 
-@app.get("/", response_class=HTMLResponse)
-def index():
-    try:
-        with open("static/index.html", "r", encoding="utf-8") as f:
-            return HTMLResponse(content=f.read())
-    except FileNotFoundError:
-        return HTMLResponse(content="<h3>Frontend assets compiling. Please reload in a moment.</h3>", status_code=200)
+    @app.get("/", response_class=HTMLResponse)
+    def index():
+        try:
+            with open("static/index.html", "r", encoding="utf-8") as f:
+                return HTMLResponse(content=f.read())
+        except FileNotFoundError:
+            return HTMLResponse(content="<h3>Frontend assets compiling. Please reload in a moment.</h3>", status_code=200)
 
 if __name__ == "__main__":
     import uvicorn
